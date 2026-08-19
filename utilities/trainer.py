@@ -11,7 +11,13 @@ def train_model(save: bool = True, visualize: bool = True, epochs: int = 30, bat
     history = model.fit(X_train, Y_train, epochs=epochs, batch_size=batch_size, verbose=1, validation_data=(X_test, Y_test))
 
     if save:
-        model.save("trained_model", save_format='tf')
+        import keras
+        if keras.__version__.startswith("3"):
+            model.save("trained_model.keras")
+            print("Model saved to 'trained_model.keras'")
+        else:
+            model.save("trained_model", save_format='tf')
+            print("Model saved to 'trained_model'")
     
     if visualize:
         plt.plot(history.history['loss'])

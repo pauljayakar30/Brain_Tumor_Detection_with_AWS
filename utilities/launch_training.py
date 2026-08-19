@@ -1,5 +1,6 @@
 import os
 import tarfile
+from urllib.parse import urlparse
 
 import boto3
 import sagemaker
@@ -63,6 +64,28 @@ def launch_training(dataset_s3_uri):
     model_artifact = estimator.model_data
     print(f"\nTraining complete.")
     print(f"Model artifact: {model_artifact}")
+
+    # ── A1 Solution: Auto-Copy Artifact to Deployment Path ────────────────────
+    print("\nBridging the artifact to the deployment bucket...")
+    
+    parsed_uri = urlparse(model_artifact)
+    source_bucket = parsed_uri.netloc
+    source_key = parsed_uri.path.lstrip('/')
+    
+    dest_bucket = 'project-artifacts-2304'
+    dest_key = 'model.tar.gz'
+    
+    print(f"Copying artifact to fixed deployment path: s3://{dest_bucket}/{dest_key}")
+    
+    s3_client = boto3.client("s3", region_name=REGION)
+    s3_client.copy_object(
+        CopySource={'Bucket': source_bucket, 'Key': source_key},
+        Bucket=dest_bucket,
+        Key=dest_key
+    )
+    print("✅ Artifact auto-copied successfully! deploy_own_model.py is ready to run.")
+    # ──────────────────────────────────────────────────────────────────────────
+
     return model_artifact
 
 

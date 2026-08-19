@@ -1,4 +1,4 @@
-# 🧠 Brain Tumor Detection with AWS SageMaker
+# Brain Tumor Detection with AWS SageMaker
 
 An end-to-end deep learning pipeline that classifies brain MRI scans as tumor / no-tumor — covering local model training, cloud deployment on AWS SageMaker, and a Streamlit web app for real-time inference.
 

@@ -15,6 +15,7 @@ trained_model/
 trained_model_trf/
 model/saved_model/
 *.h5
+*.keras
 *.tar.gz
 
 # Output graphs
