@@ -71,10 +71,20 @@ if __name__ == "__main__":
     print("=" * 50)
     print("  Brain Tumor Project — AWS Cleanup")
     print("=" * 50)
-    delete_endpoint()
-    delete_endpoint_config()
-    delete_models()
-    delete_s3_artifact()
+    
+    try:
+        delete_endpoint()
+        delete_endpoint_config()
+        delete_models()
+        delete_s3_artifact()
+    except Exception as e:
+        import botocore.exceptions
+        if "NoCredentialsError" in str(type(e)) or isinstance(e, botocore.exceptions.NoCredentialsError):
+            print("\n  [WARNING] AWS credentials not found. Remote cleanup skipped.")
+            print("            (This is normal if you are running locally without AWS credentials.)")
+        else:
+            print(f"\n  [ERROR] AWS Cleanup failed: {e}")
+
     delete_local_archive()
     print("=" * 50)
     print("  Cleanup complete.")

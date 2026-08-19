@@ -229,7 +229,7 @@ with col_upload:
         type=["jpg", "jpeg", "png"],
         label_visibility="collapsed",
     )
-    submit = st.button("Analyze Scan", use_container_width=True, type="primary")
+    submit = st.button("Analyze Scan", width="stretch", type="primary")
     if submit and uploaded_file is None:
         st.warning("Please upload an MRI image first.")
 
@@ -248,7 +248,7 @@ with col_preview:
         </div>
         """, unsafe_allow_html=True)
     else:
-        st.image(uploaded_file, use_container_width=True)
+        st.image(uploaded_file, width="stretch")
         
         if submit:
             with st.spinner(f"Running inference using {inference_mode}..."):
