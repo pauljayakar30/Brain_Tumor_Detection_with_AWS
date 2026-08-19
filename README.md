@@ -47,18 +47,24 @@ This project takes an MRI image, runs it through a custom CNN, and returns a pre
 
 ## Setup
 
-1. Clone the repo and install dependencies:
+1. Clone the repo and create a virtual environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate        # on Windows: venv\Scripts\activate
+   ```
+
+2. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
 
-2. Set required environment variables (see `.gitignore` — a `set_environment.sh` script is expected but not tracked, since it holds AWS credentials/account details):
+3. Set required environment variables (see `.gitignore` — a `set_environment.sh` script is expected but not tracked, since it holds AWS credentials/account details):
    ```bash
    export AWS_ACCOUNT_ID="your-account-id"
    export AWS_DEFAULT_REGION="your-region"
    ```
 
-3. **Dataset**: place MRI images under `dataset/yes/` (tumor present) and `dataset/no/` (no tumor). Images are auto-resized to 128×128 during preprocessing.
+4. **Dataset**: place MRI images under `dataset/yes/` (tumor present) and `dataset/no/` (no tumor). Images are auto-resized to 128×128 during preprocessing.
 
 ## Training & Deployment
 
@@ -84,6 +90,10 @@ Upload an MRI scan and the app returns a real-time classification with a confide
 ## Quick Reference — All Commands
 
 ```bash
+# 0. Create and activate a virtual environment
+python -m venv venv
+source venv/bin/activate        # on Windows: venv\Scripts\activate
+
 # 1. Install dependencies
 pip install -r requirements.txt
 
