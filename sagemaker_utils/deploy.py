@@ -1,8 +1,9 @@
+import os
 import sagemaker
 from sagemaker.tensorflow.model import TensorFlowModel
 
 sess = sagemaker.Session()
-role = "arn:aws:iam::494825111473:role/SageMakerExecutor"
+role = f"arn:aws:iam::{os.environ['AWS_ACCOUNT_ID']}:role/SageMakerExecutor"
 
 model = TensorFlowModel(
     model_data="s3://project-artifacts-0401/model.tar.gz",

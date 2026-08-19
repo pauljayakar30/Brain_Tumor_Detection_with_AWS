@@ -1,6 +1,8 @@
+import os
+
 from sagemaker.huggingface import HuggingFaceModel
 
-role = "arn:aws:iam::494825111473:role/SageMakerExecutor"
+role = f"arn:aws:iam::{os.environ['AWS_ACCOUNT_ID']}:role/SageMakerExecutor"
 
 model = HuggingFaceModel(
     transformers_version="4.37",

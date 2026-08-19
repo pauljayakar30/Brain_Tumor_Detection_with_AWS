@@ -7,7 +7,7 @@ from sagemaker.tensorflow import TensorFlow
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
-ROLE        = "arn:aws:iam::494825111473:role/SageMakerExecutor"
+ROLE        = f"arn:aws:iam::{os.environ['AWS_ACCOUNT_ID']}:role/SageMakerExecutor"
 S3_BUCKET   = "project-artifacts-2204"
 REGION      = os.environ.get("AWS_DEFAULT_REGION", "ap-south-1")
 DATASET_DIR = "dataset"

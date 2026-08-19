@@ -1,3 +1,4 @@
+import os
 import boto3
 import sagemaker
 from sagemaker.tensorflow.model import TensorFlowModel
@@ -6,7 +7,7 @@ ENDPOINT_NAME = "2304-tumor-endpoint"
 REGION = "ap-south-1"
 
 sess = sagemaker.Session()
-role = "arn:aws:iam::494825111473:role/SageMakerExecutor"
+role = f"arn:aws:iam::{os.environ['AWS_ACCOUNT_ID']}:role/SageMakerExecutor"
 sm = boto3.client("sagemaker", region_name=REGION)
 
 
