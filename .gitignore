@@ -1,0 +1,24 @@
+# AWS credentials - NEVER commit these
+set_environment.sh
+utilities/Project_accessKeys.csv
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+.venv/
+venv/
+
+# Model artifacts
+trained_model/
+trained_model_trf/
+model/saved_model/
+*.h5
+*.tar.gz
+
+# Output graphs
+*.png
+
+# Dataset
+dataset/
